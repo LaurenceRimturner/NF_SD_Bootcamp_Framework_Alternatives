@@ -1,0 +1,8 @@
+<dialog class="dialog" appModal aria-labelledby="confirm-heading" (dismissed)="cancel.emit()">
+  <h2 id="confirm-heading">Delete book?</h2>
+  <p>Do you want to delete “{{ title() }}”? This cannot be undone.</p>
+  <div class="dialog-actions">
+    <button type="button" class="btn" autofocus (click)="cancel.emit()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="confirm.emit()">Delete</button>
+  </div>
+</dialog>

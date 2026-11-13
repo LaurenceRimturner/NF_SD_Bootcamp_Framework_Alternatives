@@ -1,0 +1,18 @@
+<div class="toolbar">
+  <label class="search">
+    <span class="sr-only">Search by title</span>
+    <input type="search" placeholder="Search by title..." [value]="query()" (input)="onQuery($event)" />
+  </label>
+  <div class="filters" role="group" aria-label="Filter by status">
+    @for (filter of filters; track filter.value) {
+      <button
+        type="button"
+        class="btn"
+        [attr.aria-pressed]="status() === filter.value"
+        (click)="statusChange.emit(filter.value)"
+      >
+        {{ filter.label }}
+      </button>
+    }
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<article class="card">
+  <h2 class="title">{{ book().title }}</h2>
+  <p class="author">{{ book().author }}</p>
+  <p class="meta">
+    <span class="badge" [attr.data-status]="book().status">{{ statusLabel() }}</span>
+    @if (book().rating !== null) {
+      <span class="rating" role="img" [attr.aria-label]="ratingLabel()">{{ stars() }}</span>
+    } @else {
+      <span class="unrated">Not rated</span>
+    }
+  </p>
+  @if (book().notes) {
+    <p class="notes">{{ book().notes }}</p>
+  }
+  <div class="actions">
+    <button type="button" class="btn" (click)="edit.emit(book())">
+      Edit<span class="sr-only"> {{ book().title }}</span>
+    </button>
+    <button type="button" class="btn" (click)="remove.emit(book())">
+      Delete<span class="sr-only"> {{ book().title }}</span>
+    </button>
+  </div>
+</article>
