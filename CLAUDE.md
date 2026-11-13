@@ -15,7 +15,7 @@ The app lives in the folder `app`. The folder `core` is the shared, tested logic
 - Use the filter, validation and list functions from `core`. Do not write them again in a component.
 - No `any`. Type props, inputs and events.
 - Keep components small. One component per file.
-- No UI library, no CSS framework, no state library, no router. Plain CSS in the component styles of the framework.
+- No UI library, no state library, no router. Styling is Tailwind CSS (v4) with utility classes in the templates. Colors and fonts live in `@theme` in `app/src/styles.css`.
 - Install a package only after you told me why, and only if the framework docs recommend it.
 - Run the type check, the tests and the build before you say a task is done.
 
@@ -32,5 +32,5 @@ The app lives in the folder `app`. The folder `core` is the shared, tested logic
 
 - Every interactive element must work with the keyboard and show a visible focus.
 - Dialogs open with the focus inside, close with Escape and return the focus to the button that opened them.
-- Colors and spacing come from one place (CSS custom properties), do not invent new values.
+- Colors and fonts come from one place (`@theme` in `app/src/styles.css`), spacing from the Tailwind scale. Do not invent new values.
 - Check the layout at 360px and at 1280px.

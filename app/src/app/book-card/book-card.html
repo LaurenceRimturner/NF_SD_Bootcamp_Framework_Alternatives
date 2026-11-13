@@ -1,22 +1,29 @@
-<article class="card">
-  <h2 class="title">{{ book().title }}</h2>
-  <p class="author">{{ book().author }}</p>
-  <p class="meta">
-    <span class="badge" [attr.data-status]="book().status">{{ statusLabel() }}</span>
+<article class="flex h-full flex-col border-4 border-ink bg-surface shadow-hard">
+  <div
+    class="flex items-center justify-between border-b-4 border-ink px-4 py-2 text-sm font-black tracking-wide uppercase"
+    [class.bg-want]="book().status === 'want-to-read'"
+    [class.bg-reading]="book().status === 'reading'"
+    [class.bg-done]="book().status === 'done'"
+  >
+    <span>{{ statusLabel() }}</span>
     @if (book().rating !== null) {
-      <span class="rating" role="img" [attr.aria-label]="ratingLabel()">{{ stars() }}</span>
+      <span class="text-base tracking-widest" role="img" [attr.aria-label]="ratingLabel()">{{ stars() }}</span>
     } @else {
-      <span class="unrated">Not rated</span>
+      <span>Not rated</span>
     }
-  </p>
-  @if (book().notes) {
-    <p class="notes">{{ book().notes }}</p>
-  }
-  <div class="actions">
-    <button type="button" class="btn" (click)="edit.emit(book())">
+  </div>
+  <div class="flex flex-1 flex-col gap-2 p-4">
+    <h2 class="text-2xl leading-tight font-black tracking-tight uppercase">{{ book().title }}</h2>
+    <p class="font-bold text-muted">{{ book().author }}</p>
+    @if (book().notes) {
+      <p class="border-l-4 border-ink pl-3 text-sm">{{ book().notes }}</p>
+    }
+  </div>
+  <div class="grid grid-cols-2 border-t-4 border-ink">
+    <button type="button" class="btn border-0 border-r-4 border-ink shadow-none" (click)="edit.emit(book())">
       Edit<span class="sr-only"> {{ book().title }}</span>
     </button>
-    <button type="button" class="btn" (click)="remove.emit(book())">
+    <button type="button" class="btn border-0 shadow-none" (click)="remove.emit(book())">
       Delete<span class="sr-only"> {{ book().title }}</span>
     </button>
   </div>

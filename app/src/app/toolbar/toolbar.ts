@@ -5,7 +5,6 @@ import type { StatusFilter } from '../../core/types';
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.html',
-  styleUrl: './toolbar.css',
 })
 export class Toolbar {
   readonly query = input.required<string>();

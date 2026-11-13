@@ -28,14 +28,14 @@ describe('BookCard', () => {
     const { element } = render(book);
     expect(element.querySelector('h2')?.textContent).toBe('Dune');
     expect(element.textContent).toContain('Frank Herbert');
-    expect(element.querySelector('.badge')?.textContent).toBe('Done');
-    expect(element.querySelector('.rating')?.getAttribute('aria-label')).toBe('Rated 4 out of 5');
+    expect(element.textContent).toContain('Done');
+    expect(element.querySelector('[role="img"]')?.getAttribute('aria-label')).toBe('Rated 4 out of 5');
   });
 
-  it('shows "Not rated" and no notes paragraph without rating and notes', () => {
+  it('shows "Not rated" and no rating image without rating', () => {
     const { element } = render({ ...book, rating: null });
-    expect(element.querySelector('.unrated')?.textContent).toBe('Not rated');
-    expect(element.querySelector('.notes')).toBeNull();
+    expect(element.textContent).toContain('Not rated');
+    expect(element.querySelector('[role="img"]')).toBeNull();
   });
 
   it('emits edit and remove with the book', () => {

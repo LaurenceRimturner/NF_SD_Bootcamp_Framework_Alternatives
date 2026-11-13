@@ -5,7 +5,6 @@ import type { Book } from '../../core/types';
 @Component({
   selector: 'app-book-card',
   templateUrl: './book-card.html',
-  styleUrl: './book-card.css',
 })
 export class BookCard {
   readonly book = input.required<Book>();

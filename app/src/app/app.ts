@@ -15,7 +15,6 @@ const TOAST_MS = 3000;
   selector: 'app-root',
   imports: [BookCard, BookFormDialog, ConfirmDialog, EmptyState, Toast, Toolbar],
   templateUrl: './app.html',
-  styleUrl: './app.css',
 })
 export class App {
   protected readonly books = signal<Book[]>(loadBooks());

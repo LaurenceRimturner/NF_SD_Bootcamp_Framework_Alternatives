@@ -1,114 +1,55 @@
-:root {
-  --color-bg: #f5f6f8;
+@import 'tailwindcss';
+
+/* The one place for colors and fonts. Spacing uses the Tailwind scale. */
+@theme {
+  --color-paper: #f2f2ed;
   --color-surface: #ffffff;
-  --color-text: #1b1f27;
-  --color-muted: #4f5766;
-  --color-border: #cdd2db;
-  --color-primary: #2748c9;
-  --color-primary-text: #ffffff;
-  --color-danger: #b42318;
-  --color-danger-text: #ffffff;
-  --color-focus: #1a73e8;
-  --color-error: #b42318;
-  --color-toast-bg: #1b1f27;
-  --color-toast-text: #ffffff;
-  --color-backdrop: rgb(0 0 0 / 0.5);
-
-  --status-want-bg: #dbe7ff;
-  --status-want-text: #1a3a8a;
-  --status-reading-bg: #ffe9a8;
-  --status-reading-text: #5c4300;
-  --status-done-bg: #cdeed7;
-  --status-done-text: #14532d;
-
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 1rem;
-  --space-4: 1.5rem;
-  --space-5: 2rem;
-  --radius: 8px;
-  --shadow: 0 1px 3px rgb(0 0 0 / 0.12);
-  --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+  --color-ink: #000000;
+  --color-muted: #3f3f46;
+  --color-accent: #ffe600;
+  --color-danger: #d92b00;
+  --color-want: #7cb7ff;
+  --color-reading: #ffb800;
+  --color-done: #4ade80;
+  --font-sans: ui-monospace, 'Cascadia Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --shadow-hard: 6px 6px 0 0 var(--color-ink);
+  --shadow-hard-sm: 3px 3px 0 0 var(--color-ink);
 }
 
 body {
-  margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font);
-  line-height: 1.5;
+  @apply bg-paper font-sans text-ink antialiased;
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 2px;
+  @apply outline-4 outline-offset-2 outline-ink;
 }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
-  color: inherit;
-}
+@layer components {
+  .btn {
+    @apply min-h-12 cursor-pointer border-[3px] border-ink bg-surface px-4 py-2 font-black tracking-wide uppercase shadow-hard-sm transition hover:bg-ink hover:text-accent active:translate-x-0.5 active:translate-y-0.5 active:shadow-none;
+  }
 
-.btn {
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  border-radius: var(--radius);
-  padding: var(--space-2) var(--space-3);
-  cursor: pointer;
-  min-height: 2.5rem;
-}
+  .btn-primary {
+    @apply bg-accent text-ink;
+  }
 
-.btn-primary {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-primary-text);
-}
+  .btn-danger {
+    @apply bg-danger text-white hover:text-white;
+  }
 
-.btn-danger {
-  background: var(--color-danger);
-  border-color: var(--color-danger);
-  color: var(--color-danger-text);
-}
+  .field-label {
+    @apply text-sm font-black tracking-wide uppercase;
+  }
 
-.dialog {
-  border: 0;
-  border-radius: var(--radius);
-  padding: var(--space-4);
-  width: min(32rem, calc(100vw - 2 * var(--space-3)));
-  background: var(--color-surface);
-  color: var(--color-text);
-}
+  .field-input {
+    @apply min-h-12 w-full border-[3px] border-ink bg-surface px-3 py-2 focus-visible:bg-accent;
+  }
 
-.dialog::backdrop {
-  background: var(--color-backdrop);
-}
+  .dialog {
+    @apply m-auto w-[min(34rem,calc(100vw-2rem))] border-4 border-ink bg-surface p-0 text-ink shadow-[10px_10px_0_0_var(--color-ink)] backdrop:bg-ink/70;
+  }
 
-.dialog h2 {
-  margin: 0 0 var(--space-3);
-  font-size: 1.25rem;
-}
-
-.dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  margin-top: var(--space-4);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+  .dialog-title {
+    @apply bg-ink px-6 py-3 text-xl font-black tracking-wide text-accent uppercase;
+  }
 }

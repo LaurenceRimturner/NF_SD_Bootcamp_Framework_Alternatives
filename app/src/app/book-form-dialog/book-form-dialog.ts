@@ -7,7 +7,6 @@ import { Modal } from '../modal';
   selector: 'app-book-form-dialog',
   imports: [Modal],
   templateUrl: './book-form-dialog.html',
-  styleUrl: './book-form-dialog.css',
 })
 export class BookFormDialog {
   /** The book to edit, `null` when a new book is added. */
