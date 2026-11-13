@@ -1,9 +1,11 @@
 import { Component, computed, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { STATUS_LABELS } from '../../core/books';
 import type { Book } from '../../core/types';
 
 @Component({
   selector: 'app-book-card',
+  imports: [RouterLink],
   templateUrl: './book-card.html',
 })
 export class BookCard {

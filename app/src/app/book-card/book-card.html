@@ -13,7 +13,9 @@
     }
   </div>
   <div class="flex flex-1 flex-col gap-2 p-4">
-    <h2 class="text-2xl leading-tight font-black tracking-tight uppercase">{{ book().title }}</h2>
+    <h2 class="text-2xl leading-tight font-black tracking-tight uppercase">
+      <a class="underline decoration-4 underline-offset-4 hover:bg-accent" [routerLink]="['/books', book().id]">{{ book().title }}</a>
+    </h2>
     <p class="font-bold text-muted">{{ book().author }}</p>
     @if (book().notes) {
       <p class="border-l-4 border-ink pl-3 text-sm">{{ book().notes }}</p>

@@ -15,7 +15,7 @@ The app lives in the folder `app`. The folder `core` is the shared, tested logic
 - Use the filter, validation and list functions from `core`. Do not write them again in a component.
 - No `any`. Type props, inputs and events.
 - Keep components small. One component per file.
-- No UI library, no state library, no router. Styling is Tailwind CSS (v4) with utility classes in the templates. Colors and fonts live in `@theme` in `app/src/styles.css`.
+- No UI library, no state library. The only router is the official `@angular/router` (routes in `app/src/app/app.routes.ts`). Styling is Tailwind CSS (v4) with utility classes in the templates. Colors and fonts live in `@theme` in `app/src/styles.css`.
 - Install a package only after you told me why, and only if the framework docs recommend it.
 - Run the type check, the tests and the build before you say a task is done.
 

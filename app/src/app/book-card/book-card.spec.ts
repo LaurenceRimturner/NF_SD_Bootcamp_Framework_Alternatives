@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { describe, expect, it } from 'vitest';
 import type { Book } from '../../core/types';
 import { BookCard } from './book-card';
@@ -13,6 +14,7 @@ const book: Book = {
 };
 
 function render(value: Book): { element: HTMLElement; edits: Book[]; removes: Book[] } {
+  TestBed.configureTestingModule({ providers: [provideRouter([])] });
   const fixture = TestBed.createComponent(BookCard);
   fixture.componentRef.setInput('book', value);
   const edits: Book[] = [];
@@ -26,7 +28,8 @@ function render(value: Book): { element: HTMLElement; edits: Book[]; removes: Bo
 describe('BookCard', () => {
   it('shows title, author, status label and rating', () => {
     const { element } = render(book);
-    expect(element.querySelector('h2')?.textContent).toBe('Dune');
+    expect(element.querySelector('h2')?.textContent?.trim()).toBe('Dune');
+    expect(element.querySelector('h2 a')?.getAttribute('href')).toBe('/books/x');
     expect(element.textContent).toContain('Frank Herbert');
     expect(element.textContent).toContain('Done');
     expect(element.querySelector('[role="img"]')?.getAttribute('aria-label')).toBe('Rated 4 out of 5');
