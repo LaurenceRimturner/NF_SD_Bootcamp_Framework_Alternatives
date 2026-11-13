@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+
+/* The one place for colors and fonts. Spacing uses the Tailwind scale. */
+@theme {
+  --color-paper: #f2f2ed;
+  --color-surface: #ffffff;
+  --color-ink: #000000;
+  --color-muted: #3f3f46;
+  --color-accent: #ffe600;
+  --color-danger: #d92b00;
+  --color-want: #7cb7ff;
+  --color-reading: #ffb800;
+  --color-done: #4ade80;
+  --font-sans: ui-monospace, 'Cascadia Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --shadow-hard: 6px 6px 0 0 var(--color-ink);
+  --shadow-hard-sm: 3px 3px 0 0 var(--color-ink);
+}
+
+body {
+  @apply bg-paper font-sans text-ink antialiased;
+}
+
+:focus-visible {
+  @apply outline-4 outline-offset-2 outline-ink;
+}
+
+@layer components {
+  .btn {
+    @apply min-h-12 cursor-pointer border-[3px] border-ink bg-surface px-4 py-2 font-black tracking-wide uppercase shadow-hard-sm transition hover:bg-ink hover:text-accent active:translate-x-0.5 active:translate-y-0.5 active:shadow-none;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-ink;
+  }
+
+  .btn-danger {
+    @apply bg-danger text-white hover:text-white;
+  }
+
+  .field-label {
+    @apply text-sm font-black tracking-wide uppercase;
+  }
+
+  .field-input {
+    @apply min-h-12 w-full border-[3px] border-ink bg-surface px-3 py-2 focus-visible:bg-accent;
+  }
+
+  .dialog {
+    @apply m-auto w-[min(34rem,calc(100vw-2rem))] border-4 border-ink bg-surface p-0 text-ink shadow-[10px_10px_0_0_var(--color-ink)] backdrop:bg-ink/70;
+  }
+
+  .dialog-title {
+    @apply bg-ink px-6 py-3 text-xl font-black tracking-wide text-accent uppercase;
+  }
+}

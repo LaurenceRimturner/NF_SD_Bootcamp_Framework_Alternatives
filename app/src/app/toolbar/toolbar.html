@@ -1,0 +1,27 @@
+<div class="flex flex-col gap-4 lg:flex-row lg:items-end">
+  <label class="flex flex-1 flex-col gap-1">
+    <span class="field-label">Search</span>
+    <input
+      type="search"
+      class="field-input"
+      placeholder="Title..."
+      [value]="query()"
+      (input)="onQuery($event)"
+    />
+  </label>
+  <div class="flex flex-col gap-1" role="group" aria-label="Filter by status">
+    <span class="field-label" aria-hidden="true">Status</span>
+    <div class="grid grid-cols-2 sm:flex">
+      @for (filter of filters; track filter.value) {
+        <button
+          type="button"
+          class="btn -ml-[3px] shadow-none first:ml-0 aria-pressed:bg-ink aria-pressed:text-accent"
+          [attr.aria-pressed]="status() === filter.value"
+          (click)="statusChange.emit(filter.value)"
+        >
+          {{ filter.label }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

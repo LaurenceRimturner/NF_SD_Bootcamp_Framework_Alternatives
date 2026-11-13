@@ -1,0 +1,34 @@
+<app-header heading="Reading List" [subtitle]="visibleBooks().length + ' / ' + store.books().length + ' books'">
+  <button type="button" class="btn bg-ink text-accent hover:bg-surface hover:text-ink" (click)="openAdd()">
+    + Add book
+  </button>
+</app-header>
+
+<main class="mx-auto flex max-w-7xl flex-col gap-6 p-4 sm:p-6">
+  <app-toolbar
+    [query]="query()"
+    [status]="status()"
+    (queryChange)="query.set($event)"
+    (statusChange)="status.set($event)"
+  />
+
+  @if (visibleBooks().length > 0) {
+    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      @for (book of visibleBooks(); track book.id) {
+        <li>
+          <app-book-card [book]="book" (edit)="openEdit($event)" (remove)="deleting.set($event)" />
+        </li>
+      }
+    </ul>
+  } @else {
+    <app-empty-state />
+  }
+</main>
+
+@if (formOpen()) {
+  <app-book-form-dialog [book]="editing()" (save)="saveBook($event)" (cancel)="closeForm()" />
+}
+
+@if (deleting(); as book) {
+  <app-confirm-dialog [title]="book.title" (confirm)="confirmDelete()" (cancel)="deleting.set(null)" />
+}

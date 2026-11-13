@@ -1,0 +1,10 @@
+<dialog class="dialog" appModal aria-labelledby="confirm-heading" (dismissed)="cancel.emit()">
+  <h2 id="confirm-heading" class="dialog-title">Delete book?</h2>
+  <div class="p-6">
+    <p class="font-bold">Delete “{{ title() }}”? This cannot be undone.</p>
+    <div class="mt-6 flex justify-end gap-3">
+      <button type="button" class="btn" autofocus (click)="cancel.emit()">Cancel</button>
+      <button type="button" class="btn btn-danger" (click)="confirm.emit()">Delete</button>
+    </div>
+  </div>
+</dialog>
